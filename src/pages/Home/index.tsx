@@ -5,7 +5,7 @@ import { Product } from '../../types/Product'
 import api from '../../services/api'
 import { Card } from '../../components/Card'
 
-function App() {
+function Home() {
   const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
@@ -35,4 +35,4 @@ function App() {
   )
 }
 
-export default App
+export default Home
