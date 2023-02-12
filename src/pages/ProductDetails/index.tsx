@@ -1,6 +1,6 @@
 import './styles.scss'
 import {
-  useParams
+  useParams,
 } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import api from '../../services/api';
@@ -19,21 +19,31 @@ const ProductDetails = () => {
       setItem(res.data)
       setLoading(false)
     }
-
     getProduct()
-      
   }, [])
 
   return (
     <>
-      {loading && (
+      {loading ? (
         <div className='loading'>
           <ClipLoader color="#36d7b7" size={82} />
         </div>
-      )}    
-      {!loading && (
-        <h1>{item?.title}</h1>
-      )}
+      ): 
+      <div className='container-product'>
+        <div className="product">
+          <div className="product-image">
+            <img src={item?.image} alt={item?.title} />
+          </div>
+          <div className="product-info">
+            <h3 className="product-category">{item?.category}</h3>
+            <h1 className='product-title'>{item?.title}</h1>
+            <p className='product-description'>{item?.description}</p>
+            <span className='product-price'>R$ {item?.price.toFixed(2).replace(".", ",")}</span>
+            <button className='product-cart'>Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      }    
     </>
     
   )
